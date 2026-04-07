@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PART I - HTML5 & CSS</title>
+
+    <!-- Neocities: https://gliariodvd.neocities.org/ -->
+    <!-- GitHub Pages: https://gmrdavid.github.io/midterm/ -->
+
+    <style>
+        :root {
+            --primary: #2c7a7b;
+            --secondary: #0b5262;
+            --accent: #ffd166;
+            --surface: #ffffff;
+            --surface-soft: #f4f8fb;
+            --text: #14213d;
+            --muted: #5a6772;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top left, rgba(255, 209, 102, 0.2), transparent 32%),
+                        linear-gradient(135deg, #e8f1f6 0%, #c7e8f8 45%, #f8fbff 100%);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 28px 24px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            box-shadow: 0 12px 24px rgba(22, 44, 68, 0.18);
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 720px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.8));
+            padding: 12px 22px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 999px;
+            box-shadow: 0 8px 18px rgba(100, 116, 139, 0.08);
+            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            background: var(--primary);
+            color: white;
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-columns: 3fr 1.1fr;
+            gap: 24px;
+            max-width: 1180px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        .content {
+            background: linear-gradient(180deg, var(--surface) 0%, #f7fbff 100%);
+            padding: 28px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(16, 36, 63, 0.08);
+            border: 1px solid rgba(17, 70, 114, 0.08);
+        }
+
+        #main-content {
+            padding: 26px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), #eef7ff 100%);
+            border: 1px solid rgba(0, 123, 255, 0.14);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        #main-content h2 {
+            margin-top: 0;
+            color: var(--secondary);
+            font-size: 28px;
+        }
+
+        #main-content p {
+            font-size: 16px;
+            line-height: 1.75;
+            margin: 18px 0;
+            color: var(--muted);
+        }
+
+        .info-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0fbff;
+            border: 1px solid rgba(0, 123, 255, 0.18);
+            color: #0a3e5f;
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin: 22px 0;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 360px;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 1px solid rgba(0, 123, 255, 0.35);
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: inset 0 1px 4px rgba(15, 40, 79, 0.06);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.12);
+            outline: none;
+        }
+
+        .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 14px 26px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(0, 86, 179, 0.24);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 16px 28px rgba(0, 86, 179, 0.28);
+        }
+
+        .dynamic-text {
+            margin-top: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0e2648;
+        }
+
+        aside {
+            background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+            padding: 24px;
+            border-radius: 22px;
+            border: 1px solid rgba(17, 70, 114, 0.1);
+            box-shadow: 0 14px 28px rgba(17, 70, 114, 0.08);
+            align-self: start;
+        }
+
+        aside h3 {
+            margin-top: 0;
+            font-size: 20px;
+            color: var(--secondary);
+        }
+
+        aside p {
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 -8px 24px rgba(17, 70, 114, 0.12);
+        }
+
+        @media(max-width: 900px) {
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to Southern Leyte State University</h1>
+    <p>Discover how SLSU leads sustainability, innovation, and academic excellence in Southern Leyte.</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About SLSU</a>
+    <a href="#">Programs</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="page-grid">
+    <section class="content">
+        <article id="main-content">
+            <h2>Southern Leyte State University Recognized in Global Sustainability Rankings</h2>
+
+            <p>Southern Leyte State University (SLSU) has once again demonstrated its commitment to environmental sustainability and responsible campus management after being recognized in the UI GreenMetric World University Rankings.</p>
+
+            <div class="info-box">
+                <span>⭐</span>
+                <span id="student-info"></span>
+            </div>
+
+            <label for="user-input">Enter your message:</label>
+            <input type="text" id="user-input" placeholder="Type a note here...">
+            <p id="display-input" class="dynamic-text"></p>
+
+            <div class="buttons-row">
+                <button id="change-content">Change Content</button>
+                <button id="alert-button">Click for Alert</button>
+            </div>
+
+            <p id="dynamic-content" class="dynamic-text">This content will change.</p>
+        </article>
+    </section>
+
+    <aside>
+        <h3>Did You Know?</h3>
+        <p>UI GreenMetric assesses universities using sustainability indicators such as energy efficiency, waste management, water conservation, and environmental education. SLSU’s performance highlights its strong campus initiatives and green planning.</p>
+    </aside>
+</div>
+
+<footer>
+    <p>&copy; 2026 Southern Leyte State University</p>
+</footer>
+
+<script>
+    // A. Variables and Output
+    let name = "David Glia";
+    let course = "Computer Science";
+    document.getElementById("student-info").innerText = "Name: " + name + " • Course: " + course;
+
+    // B. Button Function
+    document.getElementById("alert-button").addEventListener("click", function() {
+        alert("We are SLSU because of you!");
+    });
+
+    // C. User Input
+    document.getElementById("user-input").addEventListener("input", function() {
+        document.getElementById("display-input").innerText = "You entered: " + this.value;
+    });
+
+    // D. Event Handling
+    document.getElementById("change-content").addEventListener("click", function() {
+        document.getElementById("dynamic-content").innerText = "Content changed dynamically!";
+    });
+</script>
+</body>
+</html>
